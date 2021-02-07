@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  #enter custom routes above the resources
+  get '/signup', 'users#new'
+  
+
   resources :reviews
   resources :users
   resources :recipes
