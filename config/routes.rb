@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
   #enter custom routes above the resources
-  get '/signup', 'users#new'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy'
   
+  get '/' => 'sessions#home'
+
+  get '/signup' => 'users#new'
+  post '/signup' => 'users#create'
 
   resources :reviews
   resources :users
