@@ -1,1 +1,21 @@
-<%=%>
+<h1><%=@recipe.name%></h1>
+
+Ingredients: 
+<ul>
+    <% @recipe.ingredients.split("\r\n").each do |ing| %>
+    <li>
+    <%= ing %>
+    </li>
+    <% end %>
+</ul>
+
+Instructions: 
+<ul>
+    <% @recipe.instructions.split("\r\n").each do |ins| %>
+    <li>
+    <%= ins %>
+    </li>
+    <% end %>
+</ul>
+<br><br><br>
+<%= button_to "Delete Recipe", recipe_path(@recipe), method: :delete if @recipe.user_id == current_user.id %>

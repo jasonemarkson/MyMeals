@@ -2,7 +2,9 @@
 <ol type = "1">
     <% @recipes.each do |recipe| %>
     <li>
-    <p><%= recipe.name %></p>
+    <p><%= link_to recipe.name, recipe_path(recipe.id) %><br>
+    <em>~cooked by: <%= User.find(recipe.user_id).username %> ~ <%= link_to "edit", edit_recipe_path(recipe.id) if recipe.user_id == current_user.id%></em></p>
+
     </li>
     <% end %>
 <ol>

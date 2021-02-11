@@ -1,12 +1,2 @@
 <h1>What You Cookin' Up Now??</h1>
-<%= flash[:message] if flash[:message] %><br><br>
-<%=form_for(@recipe) do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %><br><br>
-    <%= f.label :ingredients %>
-    <%= f.text_area :ingredients %><br><br>
-    <%= f.label :instructions %>
-    <%= f.text_area :instructions %><br><br>
-
-    <%= f.submit "Add Recipe" %>
-<% end %>
+<%=render 'form'%>
