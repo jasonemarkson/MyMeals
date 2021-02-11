@@ -1,0 +1,8 @@
+<h1>These are the things people are making in the 'tine</h1>
+<ol type = "1">
+    <% @recipes.each do |recipe| %>
+    <li>
+    <p><%= recipe.name %></p>
+    </li>
+    <% end %>
+<ol>
