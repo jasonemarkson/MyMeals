@@ -1,4 +1,10 @@
-<h1><%= @user.name %></h1>
+<h1>Recipes made by... <%= @user.username %></h1>
 
+<ol>
+<% @user.recipes.each do |recipe| %>
+<li>
+<p> <%= link_to recipe.name, recipe_path(recipe.id) %> </p>
+</li>
+<% end %>
 
-
+</ol>
