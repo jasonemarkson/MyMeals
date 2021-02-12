@@ -17,5 +17,8 @@ Instructions:
     </li>
     <% end %>
 </ul>
-<br><br><br>
+<br><br>
+
+Add a Review -> <br><input type="text" id="recipe[reviews][]">
+<br>
 <%= button_to "Delete Recipe", recipe_path(@recipe), method: :delete if @recipe.user_id == current_user.id %>
