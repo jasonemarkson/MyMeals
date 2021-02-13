@@ -19,6 +19,10 @@ Instructions:
 </ul>
 <br><br>
 
-Add a Review -> <br><input type="text" id="recipe[reviews][]">
-<br>
-<%= button_to "Delete Recipe", recipe_path(@recipe), method: :delete if @recipe.user_id == current_user.id %>
+<% if !@recipe.reviews.blank? %><h5>Reviews from other users</h5><% end %>
+
+<% @recipe.reviews.each do |r| %>
+"<em><%= r.content %></em>"<br>
+<% end %>
+
+<p><%= button_to "Delete Recipe", recipe_path(@recipe), method: :delete if @recipe.user_id == current_user.id %></p>

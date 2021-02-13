@@ -1,0 +1,7 @@
+<h1>Leave a Review</h1>
+<p><% if flash[:message] %><%= flash[:message] %><% end %></p>
+<%= form_for(@review) do |f| %>
+    <%= f.collection_select :recipe_id, Recipe.all.order('name ASC'), :id, :name, {include_blank: '-Choose Recipe-'} %>
+    <%= f.text_field :content %>
+    <%= f.submit "Add Review"%>
+<% end %>
