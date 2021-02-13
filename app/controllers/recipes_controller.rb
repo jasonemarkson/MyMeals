@@ -1,20 +1,12 @@
 class RecipesController < ApplicationController
+    before_action :redirect_if_not_logged_in
+    
     def index
-        if logged_in?
-            @recipes = Recipe.all
-        else
-            flash[:message] = "Please log in or sign up"
-            redirect_to '/'
-        end
+        @recipes = Recipe.all
     end
     
     def new
-        if logged_in?
-            @recipe = Recipe.new
-        else
-            flash[:message] = "Please log in or sign up"
-            redirect_to '/'
-        end
+        @recipe = Recipe.new
     end
 
     def create
@@ -28,21 +20,22 @@ class RecipesController < ApplicationController
     end
 
     def show
-        if logged_in?
-            @recipe = Recipe.find(params[:id])
+        @recipe = Recipe.find(params[:id])
+
+        if @recipe
+            @user = User.find(@recipe.user_id).username
         else
             redirect_to '/'
         end
     end
 
     def edit
-        if logged_in?
-            @recipe = Recipe.find(params[:id])
+        
+        @recipe = Recipe.find(params[:id])
 
-            if @recipe.user_id != current_user.id
-                flash[:message] = "Error. You are not able to edit other user's recipes."
-                redirect_to recipes_path
-            end
+        if @recipe.user_id != current_user.id
+            flash[:message] = "Error. You are not able to edit other user's recipes."
+            redirect_to recipes_path
         else
             render :edit
         end

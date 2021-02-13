@@ -17,12 +17,15 @@ Instructions:
     </li>
     <% end %>
 </ul>
-<br><br>
+<br>
 
-<% if !@recipe.reviews.blank? %><h5>Reviews from other users</h5><% end %>
+<p><em>Made by: <%= @user %></em></p>
+
+<% if !@recipe.reviews.blank? %><h4><u>Reviews (<%= @recipe.reviews.count %>)</u></h4><% end %>
 
 <% @recipe.reviews.each do |r| %>
-"<em><%= r.content %></em>"<br>
+<% reviewer = User.find(r.user_id).username %>
+<p><b><%= reviewer %></b>: <br> "<em><%= r.content %></em>" <%= link_to "Delete Review", review_path(r), method: :delete if reviewer == current_user.username %></p>
 <% end %>
-
+<br><br><br>
 <p><%= button_to "Delete Recipe", recipe_path(@recipe), method: :delete if @recipe.user_id == current_user.id %></p>

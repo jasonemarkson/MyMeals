@@ -12,4 +12,11 @@ class ApplicationController < ActionController::Base
         !!session[:user_id]
     end
 
+    def redirect_if_not_logged_in
+        if !logged_in?
+            flash[:message] = "Please log in or sign up"
+            redirect_to '/'
+        end
+    end
+
 end

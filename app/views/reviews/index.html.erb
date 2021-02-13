@@ -1,0 +1,9 @@
+<h1>Here's what <%= @user.username %> had to say about...</h1>
+<ul>
+<% @user.reviewed_recipes.uniq.each do |r| %>
+<li>
+<p><%= link_to r.name, recipe_path(r) %></p>
+</li>
+<% end %>
+</ul>
+

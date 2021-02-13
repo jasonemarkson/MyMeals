@@ -27,6 +27,11 @@ Review.recipe = “Tuna Casserole”
 Review.user = “Jason Markson”
 
 -----------------------------------
+Nested routes (2 required)
+
+it would make sense to be able to nest the user's recipes such as '/users/:id/recipes'
+it would maybe also make sense to be able to see a user's reviews for other recipes such as '/users/:id/reviewed_recipes' that could be cool
+-----------------------------------
 Buffalo Chicken Dip
 
 ingredients: 
