@@ -22,11 +22,12 @@ Instructions:
 <p><em>Made by: <%= @user %></em></p>
 
 <%=link_to "Add Review", new_recipe_review_path(@recipe)%>
-
-<h4><%= pluralize(@reviews.count, "Review") %></h4>
+<br><br><br>
+<h3><u><%= pluralize(@reviews.count, "Review") %></u></h3>
 
 <% @recipe.reviews.each do |review| %>
-    "<em><%= review.content %></em>" <% if review.user_id == current_user.id %> <%= link_to "delete", review_path(review), data: { method: :delete } %> <% end %>
+<% reviewer = User.find(review.user_id).username %>
+    <p><u><%= reviewer %></u>: "<em><%= review.content %></em>" <% if review.user_id == current_user.id %> <%= link_to "delete", review_path(review), data: { method: :delete } %> <% end %></p>
 <% end %>
 
 <br><br>

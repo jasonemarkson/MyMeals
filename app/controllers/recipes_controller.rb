@@ -25,8 +25,6 @@ class RecipesController < ApplicationController
         if @recipe
             @user = User.find(@recipe.user_id).username #user who created the recipe
             @reviews = Review.all.select { |r| r.recipe_id == @recipe.id } #only the reviews for that particular recipe
-            #add in a condition to check if there is a review added / params review is not blank, then add to review
-            #if params review is not blank, add, then redirect to show page to see added comment
         else
             redirect_to '/'
         end
