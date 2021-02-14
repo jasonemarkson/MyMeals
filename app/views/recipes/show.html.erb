@@ -21,17 +21,13 @@ Instructions:
 
 <p><em>Made by: <%= @user %></em></p>
 
-<%=form_for @recipe.reviews.build do |f| %>
-    <%= f.text_area :content, placeholder: "Add a Review..." %>
-    <%= f.submit value: "Add"%>
-<% end %>
+<%=link_to "Add Review", new_recipe_review_path(@recipe)%>
 
 <h4><%= pluralize(@reviews.count, "Review") %></h4>
 
-<% @reviews.each do |review| %>
-    <em>"<%= review.content %>"</em><br>
+<% @recipe.reviews.each do |review| %>
+    "<em><%= review.content %></em>" <% if review.user_id == current_user.id %> <%= link_to "delete", review_path(review), data: { method: :delete } %> <% end %>
 <% end %>
-
 
 <br><br>
 <p><%= button_to "Delete Recipe", recipe_path(@recipe), method: :delete if @recipe.user_id == current_user.id %></p>

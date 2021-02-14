@@ -1,7 +1,3 @@
-<h1><%= @recipe.name %></h1>
-
-<h2><%= pluralize(@reviews.count, 'Review') %></h2>
-
-<% @reviews.each do |review| %>
-    "<em><%= review.content %></em>"<br>
-<% end %>
+<h1><u>Review</u>: <%= @recipe.name %></h1>
+<h2></h2>
+<em>"<%= @review.content %>"</em> -<%= @user.username %>
