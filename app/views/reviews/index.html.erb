@@ -1,8 +1,16 @@
 <h1>Here's what <%= @user.username %> had to say about...</h1>
 <ul>
-<% @user.reviewed_recipes.uniq.each do |r| %>
+<% @user.reviewed_recipes.uniq.each do |recipe| %>
 <li>
-<p><%= link_to r.name, recipe_path(r) %></p>
+
+<p><%= link_to recipe.name, recipe_path(recipe) %></p>
+
+    <% recipe.reviews.select do |r| %>
+        <%if r.user_id == @user.id%>
+        "<em><%= r.content %></em>"<br>
+        <% end %>
+    <% end %>
+
 </li>
 <% end %>
 </ul>

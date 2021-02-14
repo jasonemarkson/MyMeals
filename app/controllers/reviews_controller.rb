@@ -15,9 +15,9 @@ class ReviewsController < ApplicationController
     end
 
     def create
-        @recipe = Recipe.find(params[:review][:recipe_id])
         @review = Review.new(review_params)
         @review.user_id = current_user.id #maybe I can add this step in the review params as a default value..
+        @user = User.find(@review.user_id)
         
         if @review.save
             redirect_to recipe_path(@review.recipe_id)

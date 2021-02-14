@@ -24,6 +24,7 @@ class RecipesController < ApplicationController
 
         if @recipe
             @user = User.find(@recipe.user_id).username
+            @reviews = Review.all.select { |r| r.recipe_id == @recipe.id }
         else
             redirect_to '/'
         end

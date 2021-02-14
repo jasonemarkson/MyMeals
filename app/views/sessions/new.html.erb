@@ -1,7 +1,5 @@
 <h1>Log In</h1>
 
-<p><%= flash[:message] if flash[:message] %></p>
-
 <%= form_tag ({controller: 'sessions', action: 'create', method: 'post'}) do %>
 <label>Username: </label>
 <%= text_field_tag :username%><br><br>

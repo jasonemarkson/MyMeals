@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :reviews
 
   resources :users do
-    resources :reviews, only: [:index]
+    resources :reviews, only: [:index] #see the user's reviews -- add in the date and time for that extra touch
   end
 
   resources :recipes

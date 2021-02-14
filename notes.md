@@ -29,8 +29,8 @@ Review.user = “Jason Markson”
 -----------------------------------
 Nested routes (2 required)
 
-it would make sense to be able to nest the user's recipes such as '/users/:id/recipes'
-it would maybe also make sense to be able to see a user's reviews for other recipes such as '/users/:id/reviewed_recipes' that could be cool
+SHOW - it would make sense to be able to nest the user's recipes such as '/users/:id/recipes'
+NEW - it would maybe also make sense to leave a review on the recipe show page you're currently viewing -- '/recipes/:id/reviews/new'
 -----------------------------------
 Buffalo Chicken Dip
 
