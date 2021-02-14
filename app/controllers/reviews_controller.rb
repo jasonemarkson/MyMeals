@@ -11,7 +11,12 @@ class ReviewsController < ApplicationController
     end
     
     def new
-        @review = Review.new(recipe_id: params[:recipe_id])
+        if params[:recipe_id] && @recipe = Recipe.find_by_id(params[:recipe_id])
+            @review = Review.new(recipe_id: params[:recipe_id])
+        else
+            flash[:message] = "Error. That recipe was not found" if params[:recipe_id]
+            @review = Review.new
+        end
     end
 
     def create

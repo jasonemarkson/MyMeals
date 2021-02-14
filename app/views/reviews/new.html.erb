@@ -1,5 +1,16 @@
 <h1>Leave a Review</h1>
 
+<% if @review.errors.any? %>
+    <div id="error_explanation">
+        <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+        <ul>
+        <% @review.errors.full_messages do |message| %>
+            <li><%= message %></li>
+        <% end %>
+        </ul>
+    </div>
+<% end %>
+
 <%= form_for(@review) do |f| %>
     <%= f.collection_select :recipe_id, Recipe.all.order('name ASC'), :id, :name, {include_blank: '-Choose Recipe-'} %>
     <%= f.text_field :content %>
