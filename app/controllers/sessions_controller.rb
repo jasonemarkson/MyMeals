@@ -19,7 +19,6 @@ class SessionsController < ApplicationController
 
   def google
     #OAuth signins
-    binding.pry
     @user = User.find_or_create_by(email: auth["info"]["email"] ) do |user|
       user.name = auth["info"]["first_name"]
       user.password = SecureRandom.hex(12) #assigning them a random password for the session -- security reasons, GOogle never gives out the user's password
@@ -34,6 +33,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    flash[:message] = "You've successfully logged out!"
     session.destroy
     redirect_to '/'
   end
