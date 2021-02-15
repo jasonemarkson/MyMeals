@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   post '/signup' => 'users#create'
 
   #omniauth callback out
-  # get '/auth/:provider/callback' => 'sessions#omniauth'
+  get '/auth/:provider/callback' => 'sessions#google' #dynamic :provider if you want to implement three different OAuth signins
 
   resources :reviews
 
