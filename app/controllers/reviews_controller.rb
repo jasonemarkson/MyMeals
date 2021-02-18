@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
         # end
 
 
-        if @user = User.find_by_id(params[:user_id])
+        if params[:user_id] && @user = User.find_by_id(params[:user_id])
             @reviews = @user.reviews
         else
             @reviews = Review.all

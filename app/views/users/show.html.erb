@@ -3,11 +3,11 @@
 <ol>
 <% @user.recipes.each do |recipe| %>
 <li>
-<p> <%= link_to recipe.name, recipe_path(recipe.id) %> </p>
+<p> <%= link_to recipe.name, recipe_path(recipe) %> </p>
 </li>
 <% end %>
 
 </ol>
 
 <br><br><br>
-<p>Read <%= @user.username %>'s reviews <%= link_to "here", user_reviews_path(@user.id) %></p>
+<p>Read <%= @user.username %>'s reviews <%= link_to "here", user_reviews_path(@user) %></p>
