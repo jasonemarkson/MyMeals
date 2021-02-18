@@ -1,23 +1,22 @@
 <% if @user %>
-    <h1>Here's what <%= @user.username %> had to say about...</h1>
+    <h1>Here's what <u><%= @user.username %></u> had to say about...</h1>
     <ul>
-    <% @user.reviewed_recipes.uniq.each do |recipe| %>
+    <% @reviews.each do |r| %>
     <li>
-
-    <p><%= link_to recipe.name, recipe_path(recipe) %></p>
-
-        <% @reviews.each do |r| %>
-            "<em><%= r.content %></em>"<br>
-        <% end %>
+        <p><%= link_to r.recipe.name, recipe_path(r.recipe_id) %> - "<em><%= r.content %></em>" - <%= r.created_at.strftime("%Y-%m-%d") %></p>
     </li>
     <% end %>
     </ul>
 
 <% else %>
+    <h1>All Reviews</h1>
+    <ul>
     <% @reviews.uniq.each do |review| %>
-
-       <em><%= review.content %><em><br>
+        <li>
+       <p><%= link_to review.user.username, user_path(review.user_id) %> said, "<em><%= review.content %></em>" about <b><%= link_to review.recipe.name, recipe_path(review.recipe_id) %></b> - <%= review.created_at.strftime("%Y-%m-%d") %></p>
+        </li>
     <% end %>
+    </ul>
 <% end %>
 
 

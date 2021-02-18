@@ -4,7 +4,7 @@
     <% @recipes.each do |recipe| %>
     <li>
     <p><%= link_to recipe.name, recipe_path(recipe.id) %><br>
-    <em>~made by: <%= link_to User.find(recipe.user_id).username, user_path(recipe.user_id) %> ~ <%= link_to "edit recipe", edit_recipe_path(recipe.id) if recipe.user_id == current_user.id%></em></p>
+    <em>~made by: <%= link_to recipe.user.username, user_path(recipe.user_id) %> ~ <%= link_to "edit recipe", edit_recipe_path(recipe.id) if recipe.user_id == current_user.id%></em></p>
 
     </li>
     <% end %>

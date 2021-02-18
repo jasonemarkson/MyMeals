@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
         # end
 
 
-        if @user = User.find_by_id(params[:user_id]) 
+        if @user = User.find_by_id(params[:user_id])
             @reviews = @user.reviews
         else
             @reviews = Review.all
@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
     end
 
     def create
-        current_user.reviews.build(review_params)
+        @review = current_user.reviews.build(review_params)
 
         if @review.save
 
