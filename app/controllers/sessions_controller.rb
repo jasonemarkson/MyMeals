@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       redirect_to user_path(@user)
     else
       flash[:message] = "Incorrect login information, please try again"
-      redirect_to '/login'
+      render :new
     end
   end
 

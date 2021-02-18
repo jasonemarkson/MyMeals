@@ -19,15 +19,14 @@ Instructions:
 </ul>
 <br>
 
-<p><em>Made by: <%= @user %></em></p>
+<p><em>Made by: <%= @recipe.user.username %></em></p>
 
 <%=link_to "Add Review", new_recipe_review_path(@recipe)%>
 <br><br><br>
 <h3><u><%= pluralize(@reviews.count, "Review") %></u></h3>
 
 <% @recipe.reviews.each do |review| %>
-<% reviewer = User.find(review.user_id).username %>
-    <p><u><%= reviewer %></u>: "<em><%= review.content %></em>" <% if review.user_id == current_user.id %> <%= link_to "delete", review_path(review), data: { method: :delete } %> <% end %></p>
+    <p><u><%= review.user.username %></u>: "<em><%= review.content %></em>" <% if review.user_id == current_user.id %> <%= link_to "delete", review_path(review), data: { method: :delete } %> <% end %></p>
 <% end %>
 
 <br><br>

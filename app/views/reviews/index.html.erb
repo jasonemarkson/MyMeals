@@ -1,17 +1,23 @@
-<h1>Here's what <%= @user.username %> had to say about...</h1>
-<ul>
-<% @user.reviewed_recipes.uniq.each do |recipe| %>
-<li>
+<% if @user %>
+    <h1>Here's what <%= @user.username %> had to say about...</h1>
+    <ul>
+    <% @user.reviewed_recipes.uniq.each do |recipe| %>
+    <li>
 
-<p><%= link_to recipe.name, recipe_path(recipe) %></p>
+    <p><%= link_to recipe.name, recipe_path(recipe) %></p>
 
-    <% recipe.reviews.select do |r| %>
-        <%if r.user_id == @user.id%>
-        "<em><%= r.content %></em>"<br>
+        <% @reviews.each do |r| %>
+            "<em><%= r.content %></em>"<br>
         <% end %>
+    </li>
     <% end %>
+    </ul>
 
-</li>
+<% else %>
+    <% @reviews.uniq.each do |review| %>
+
+       <em><%= review.content %><em><br>
+    <% end %>
 <% end %>
-</ul>
+
 

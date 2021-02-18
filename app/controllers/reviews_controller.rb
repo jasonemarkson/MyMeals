@@ -2,16 +2,23 @@ class ReviewsController < ApplicationController
     before_action :redirect_if_not_logged_in
 
     def index
-        if params[:user_id] && @user = User.find_by_id(params[:user_id])
-            @user.reviews
+        # if params[:user_id] && @user = User.find_by_id(params[:user_id])
+        #     @user.reviews
+        # else
+        #     flash[:message] = "That user doesn't exist. Please try again"
+        #     redirect_to recipes_path
+        # end
+
+
+        if @user = User.find_by_id(params[:user_id]) 
+            @reviews = @user.reviews
         else
-            flash[:message] = "That user doesn't exist. Please try again"
-            redirect_to recipes_path
+            @reviews = Review.all
         end
     end
     
     def new
-        if params[:recipe_id] && @recipe = Recipe.find_by_id(params[:recipe_id])
+        if params[:recipe_id] && @recipe = Recipe.find_by_id(params[:recipe_id]) #can use build to chain these
             @review = Review.new(recipe_id: params[:recipe_id])
         else
             flash[:message] = "Error. That recipe was not found" if params[:recipe_id]
@@ -20,10 +27,8 @@ class ReviewsController < ApplicationController
     end
 
     def create
-        @review = Review.new(review_params)
-        @review.user_id = current_user.id #maybe I can add this step in the review params as a default value..
-        @user = User.find(@review.user_id)
-        
+        current_user.reviews.build(review_params)
+
         if @review.save
 
             redirect_to recipe_path(@review.recipe_id)
