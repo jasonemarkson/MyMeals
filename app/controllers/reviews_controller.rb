@@ -30,7 +30,6 @@ class ReviewsController < ApplicationController
         @review = current_user.reviews.build(review_params)
 
         if @review.save
-
             redirect_to recipe_path(@review.recipe_id)
         else
             flash[:message] = "Review could not be added. Please try again"
@@ -40,8 +39,6 @@ class ReviewsController < ApplicationController
 
     def show
         @review = Review.find(params[:id])
-        @recipe = Recipe.find(@review.recipe_id)
-        @user = User.find(@review.user_id)
     end
 
     def destroy
